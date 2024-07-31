@@ -1,0 +1,58 @@
+// funcao que gera classes com propriedades numericas
+@mixin generate-class-by-increment($property, $start, $end, $unit) {  
+  @if $unit == percent {
+    // gera classes com porcentagem % como unidade de medida
+    @for $i from $start through $end {
+      $value: $i + 1;
+      .#{$property}-#{$value}-#{$unit} {
+        #{$property}: $value * 1%;
+      }
+    }
+  } @else if $unit == null {    
+    @for $i from $start through $end {
+      $value: $i + 1;
+      .#{$property}-#{$value} {
+        #{$property}: #{$value};
+      }
+    }
+  } @else {    
+    @for $i from $start through $end {
+      $value: $i + 1;
+      .#{$property}-#{$value}-#{$unit} {
+        #{$property}: #{$value}#{$unit};
+      }
+    }
+  }
+}
+
+// funcao que gera classes baseado em lista de valores
+@mixin generate-class-by-values($property, $list) {
+  @each $value in $list {
+    .#{$property}-#{$value} {
+      #{$property}: $value;
+    }
+  }
+}
+
+// funcao que gera classes baseado em lista de valores
+@mixin generate-position-class-by-increment($property, $positions, $start, $end, $unit) {
+  @each $position in $positions {
+    $property-position: #{$property}-#{$position};
+    @include generate-class-by-increment($property-position, $start, $end, $unit);
+  }
+}
+
+@include generate-class-by-values(display, (flex));
+@include generate-class-by-values(align-items, (center));
+@include generate-class-by-values(justify-content, (center, space-between));
+@include generate-class-by-values(position, (relative, absolute, fixed));
+@include generate-class-by-increment(top, -1, 125, px);
+@include generate-class-by-increment(left, -1, 0, px);
+@include generate-class-by-increment(right, -1, 0, px);
+@include generate-class-by-increment(width, 0, 100, percent);
+@include generate-class-by-increment(width, 0, 30, px);
+@include generate-class-by-increment(height, 0, 200, px);
+@include generate-class-by-increment(gap, 0, 40, px);
+@include generate-class-by-increment(font-size, 0, 30, px);
+@include generate-class-by-increment(z-index, -1, 100, null);
+@include generate-position-class-by-increment(padding, (left, right), 0, 40, px);
