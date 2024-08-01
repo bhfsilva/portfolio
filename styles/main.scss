@@ -1,4 +1,5 @@
-@import 'mixins';
+@import "mixins";
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -6,6 +7,20 @@
   margin: 0;
   scroll-behavior: smooth;
   font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+}
+
+.ver {
+  border: 1px solid red;
+}
+
+.default-outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.default-inner-container {
+  padding: 0px 40px;
+  max-width: 1450px;
 }
 
 a {
@@ -16,9 +31,30 @@ a {
 header {
   background-color: rgba(255, 99, 71, 0);
   backdrop-filter: blur(5px);
+}
 
-  div {
-    max-width: 1365px;
+h1 {
+  mark {
+    background-color: $primary-yellow;
+    padding-bottom: 5px;
   }
 }
 
+#waving-emoji {
+  animation-name: wave;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+  display: inline-block;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

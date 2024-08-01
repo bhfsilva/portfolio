@@ -9,6 +9,7 @@
       }
     }
   } @else if $unit == null {    
+    // gera classes com sem unidade de medida
     @for $i from $start through $end {
       $value: $i + 1;
       .#{$property}-#{$value} {
@@ -43,16 +44,23 @@
 }
 
 @include generate-class-by-values(display, (flex));
+@include generate-class-by-values(flex-direction, (column));
 @include generate-class-by-values(align-items, (center));
 @include generate-class-by-values(justify-content, (center, space-between));
 @include generate-class-by-values(position, (relative, absolute, fixed));
+@include generate-class-by-values(text-align, (center, justify));
+@include generate-class-by-values(font-weight, (normal));
 @include generate-class-by-increment(top, -1, 125, px);
 @include generate-class-by-increment(left, -1, 0, px);
 @include generate-class-by-increment(right, -1, 0, px);
 @include generate-class-by-increment(width, 0, 100, percent);
 @include generate-class-by-increment(width, 0, 30, px);
 @include generate-class-by-increment(height, 0, 200, px);
+@include generate-class-by-increment(height, 0, 200, percent);
 @include generate-class-by-increment(gap, 0, 40, px);
 @include generate-class-by-increment(font-size, 0, 30, px);
+@include generate-class-by-increment(font-size, 0, 10, rem);
+@include generate-class-by-increment(line-height, 0, 40, px);
 @include generate-class-by-increment(z-index, -1, 100, null);
 @include generate-position-class-by-increment(padding, (left, right), 0, 40, px);
+@include generate-position-class-by-increment(margin, (left, right), 0, 40, px);
