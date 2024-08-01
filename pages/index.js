@@ -1,9 +1,20 @@
 import { useEffect } from "react";
+import { FiGithub } from "react-icons/fi";
+import { FiMail } from "react-icons/fi";
+import { FiLinkedin } from "react-icons/fi";
+import SocialMediaLink from "/src/components/social-media-link";
 
 export default function Home() {
   useEffect(() => {
     CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
   }, []);
+
+  const socialMedias = [
+    {url: "https://github.com/bhfsilva?tab=repositories", Icon: FiGithub, username: "bhfsilva", socialMediaName: "GitHub"},
+    {url: "mailto:bhfs.contato@gmail.com", Icon: FiMail, username: "bhfs.contato@gmail.com", socialMediaName: "Email"},
+    {url: "https://linkedin.com/in/bhfsilva", Icon: FiLinkedin, username: "Bruno Henrique", socialMediaName: "Linkedin"}
+  ]
+
   return(
     <> 
         <header className="ver default-outer-container z-index-100 position-fixed left-0-px right-0-px height-125-px align-items-center">
@@ -18,20 +29,29 @@ export default function Home() {
         </header>
         <main>
             <section className="ver default-outer-container position-relative top-125-px">
-                <div className="ver default-inner-container display-flex align-items-center">
-                    <div className="ver height-50-percent width-60-percent display-flex flex-direction-column gap-20-px">
-                        <h1 className="font-weight-normal font-size-3-rem">
+                <div className="ver position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
+                    <div className="ver display-flex flex-direction-column justify-content-space-between">
+                        <h1 className="ver font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
                             <span id="waving-emoji" className="margin-left-10-px">&#128075;</span>
                         </h1>
-                        <p className="ver width-90-percent font-size-20-px line-height-33-px text-align-justify">
+                        <p className="ver margin-top-30-px margin-bottom-30-px width-55-percent font-size-23-px line-height-40-px text-align-justify">
                             Estou continuamente me especializando em desenvolvimento back-end, focando na criação de aplicações robustas e soluções criativas.
                             Com um vasto conhecimento em linguagens como Java, Python e frameworks JavaScript modernos,
                             busco sempre resolver os mais variados problemas buscando as melhores soluções!
                         </p>
-                        <div></div>
+                        <div className="ver display-flex flex-flow-wrap gap-70-px">
+                            {socialMedias.map(socialMedia => (
+                                <SocialMediaLink 
+                                    Icon={socialMedia.Icon}
+                                    url={socialMedia.url}
+                                    username={socialMedia.username}
+                                    socialMediaName={socialMedia.socialMediaName}
+                                />
+                            ))}
+                        </div>
                     </div>
-                    <img className="ver width-40-percent" src="/static/intro/background-blob.gif" alt="blob gif"/>
+                    <img className="ver position-absolute top--90-px right--99-px z-index--1" src="/static/intro/background-blob.gif" alt="blob gif"/>
                 </div>
             </section>
             {/* <p>
