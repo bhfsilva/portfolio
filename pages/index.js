@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { FiGithub } from "react-icons/fi";
-import { FiMail } from "react-icons/fi";
-import { FiLinkedin } from "react-icons/fi";
-import SocialMediaLink from "/src/components/social-media-link";
+import { FiGithub, FiMail, FiLinkedin } from "react-icons/fi";
+import jobsExperienceList from "/assets/job-experience.json";
+import JobExperience from "/src/components/JobExperience";
+import SocialMediaLink from "/src/components/SocialMediaLink";
 
 export default function Home() {
   useEffect(() => {
     CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
   }, []);
 
-  const socialMedias = [
+  const socialMediasList = [
     {url: "https://github.com/bhfsilva?tab=repositories", Icon: FiGithub, username: "bhfsilva", socialMediaName: "GitHub"},
     {url: "mailto:bhfs.contato@gmail.com", Icon: FiMail, username: "bhfs.contato@gmail.com", socialMediaName: "Email"},
     {url: "https://linkedin.com/in/bhfsilva", Icon: FiLinkedin, username: "Bruno Henrique", socialMediaName: "Linkedin"}
@@ -17,10 +17,10 @@ export default function Home() {
 
   return(
     <> 
-        <header className="ver default-outer-container z-index-100 position-fixed left-0-px right-0-px height-125-px align-items-center">
-            <div className="ver default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
-                <img className="ver" src="/static/header/bh-logo.svg" alt="BH! Logo"/>
-                <nav className="ver display-flex gap-35-px font-size-23-px">
+        <header className="default-outer-container z-index-100 position-fixed top-0-px left-0-px right-0-px height-125-px align-items-center">
+            <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
+                <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
+                <nav className="display-flex gap-35-px font-size-23-px">
                     <a href="#experiencias">Experiências</a>
                     <a href="#projetos">Projetos</a>
                     <a href="#contato">Contato</a>
@@ -28,21 +28,22 @@ export default function Home() {
             </div>
         </header>
         <main>
-            <section className="ver default-outer-container position-relative top-125-px">
-                <div className="ver position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
-                    <div className="ver display-flex flex-direction-column justify-content-space-between">
-                        <h1 className="ver font-weight-normal font-size-3-rem">
+            <section className="default-outer-container position-relative margin-top-125-px">
+                <div className="position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
+                    <div className="display-flex flex-direction-column justify-content-space-between">
+                        <h1 className="font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
                             <span id="waving-emoji" className="margin-left-10-px">&#128075;</span>
                         </h1>
-                        <p className="ver margin-top-30-px margin-bottom-30-px width-55-percent font-size-23-px line-height-40-px text-align-justify">
+                        <p className="margin-top-30-px margin-bottom-30-px width-55-percent font-size-23-px line-height-40-px text-align-justify">
                             Estou continuamente me especializando em desenvolvimento back-end, focando na criação de aplicações robustas e soluções criativas.
                             Com um vasto conhecimento em linguagens como Java, Python e frameworks JavaScript modernos,
                             busco sempre resolver os mais variados problemas buscando as melhores soluções!
                         </p>
-                        <div className="ver display-flex flex-flow-wrap gap-70-px">
-                            {socialMedias.map(socialMedia => (
+                        <div className="display-flex flex-flow-wrap gap-70-px">
+                            {socialMediasList.map((socialMedia, index) => (
                                 <SocialMediaLink 
+                                    key={`${index}-social-media`}
                                     Icon={socialMedia.Icon}
                                     url={socialMedia.url}
                                     username={socialMedia.username}
@@ -51,7 +52,27 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                    <img className="ver position-absolute top--90-px right--99-px z-index--1" src="/static/intro/background-blob.gif" alt="blob gif"/>
+                    <img className="position-absolute top--90-px right--99-px z-index--1" src="/static/intro/background-blob.gif" alt="blob gif"/>
+                </div>
+            </section>
+            <section className="default-outer-container">
+                <div className="default-inner-container">
+                    <h1 id="experiencias" className="section-title">Experiências profissionais</h1>
+                    <div className="width-500-px">
+                        {jobsExperienceList.map((jobExperience, index) => (
+                            <JobExperience
+                                key={`${index}-job-experience`}
+                                organizationLogo={jobExperience.organizationLogo}
+                                organizationName={jobExperience.organizationName}
+                                position={jobExperience.position}
+                                startMonthYear={jobExperience.startMonthYear}
+                                endMonthYear={jobExperience.endMonthYear}
+                                skills={jobExperience.skills}
+                                tasks={jobExperience.tasks}
+                                showTaskListOption={jobExperience.showTaskList}
+                            />
+                        ))}
+                    </div>
                 </div>
             </section>
             {/* <p>
