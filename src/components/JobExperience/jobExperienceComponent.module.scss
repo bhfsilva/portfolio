@@ -1,0 +1,27 @@
+@import "styles/variables";
+
+.slashSeparated::after {
+  content: " /";
+}
+
+.dotEnd::after {
+  content: ".";
+}
+
+.showTasksButton {
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
+  &:hover {
+    background-color: $tertiary-yellow;
+  }
+}
+
+.jobExperienceComponentBox {
+  border: 2px solid $primary-yellow;
+  background-color: $quaternary-yellow;
+}
+
+.rotateButton {
+  transform: rotate(180deg);
+}

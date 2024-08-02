@@ -1,5 +1,6 @@
 @import "mixins";
 @import "variables";
+@import "components";
 
 * {
   box-sizing: border-box;
@@ -13,16 +14,6 @@
   border: 1px solid red;
 }
 
-.default-outer-container {
-  display: flex;
-  justify-content: center;
-}
-
-.default-inner-container {
-  padding: 0px 70px;
-  max-width: 1450px;
-}
-
 a {
   color: black;
   text-decoration: none;
@@ -30,7 +21,19 @@ a {
 
 header {
   background-color: rgba(255, 99, 71, 0);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(12px);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-position: inside;
 }
 
 h1 {
@@ -58,3 +61,31 @@ h1 {
     transform: rotate(0deg);
   }
 }
+
+// geracao de classes css customizadas
+@include generate-class-by-values(display, (flex));
+@include generate-class-by-values(flex-direction, (column));
+@include generate-class-by-values(align-items, (center));
+@include generate-class-by-values(justify-content, (center, space-between, space-around, space-evenly));
+@include generate-class-by-values(position, (relative, absolute, fixed));
+@include generate-class-by-values(flex-flow, (wrap));
+@include generate-class-by-values(text-align, (center, justify));
+@include generate-class-by-values(font-weight, (normal, bold));
+@include generate-class-by-increment(font-weight, 0, 900, null);
+@include generate-class-by-increment(top, -100, 125, px);
+@include generate-class-by-increment(left, -1, 0, px);
+@include generate-class-by-increment(right, -100, 0, px);
+@include generate-class-by-increment(width, 0, 100, percent);
+@include generate-class-by-increment(width, 0, 200, px);
+@include generate-class-by-increment(height, 0, 600, px);
+@include generate-class-by-increment(height, 0, 200, percent);
+@include generate-class-by-increment(margin, 0, 20, px);
+@include generate-class-by-increment(padding, 0, 20, px);
+@include generate-class-by-increment(gap, 0, 70, px);
+@include generate-class-by-increment(font-size, 0, 30, px);
+@include generate-class-by-increment(font-size, 0, 10, rem);
+@include generate-class-by-increment(line-height, 0, 50, px);
+@include generate-class-by-increment(z-index, -10, 100, null);
+@include generate-class-by-increment(border-radius, 0, 50, px);
+@include generate-position-class-by-increment(padding, (left, right), 0, 40, px);
+@include generate-position-class-by-increment(margin, (top, bottom, left, right), 0, 200, px);
