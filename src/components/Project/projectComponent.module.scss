@@ -7,18 +7,13 @@
 .projectComponentBox {
   border: 2px solid $primary-yellow;
   background-color: $quaternary-yellow;
-
   & > img {
     border: 2px solid $secondary-yellow;
   }
-
   h1 {
     color: $secondary-yellow;
   }
-
   svg {
-    fill: $tertiary-yellow;
-    stroke: $secondary-yellow;
-    stroke-width: 3px;
+    fill: $primary-yellow;
   }
 }

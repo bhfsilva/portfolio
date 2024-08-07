@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { getJobExperienceList, getSocialMediaList, getGithubRepositories } from "/services/portfolioService.js";
 import { LiaFileDownloadSolid } from "react-icons/lia";
+import { FiGrid, FiList } from "react-icons/fi";
 import JobExperience from "/src/components/JobExperience";
 import SocialMediaLink from "/src/components/SocialMediaLink";
-import Project from "../src/components/Project";
+import Project from "/src/components/Project";
 
 export default function Main() {
   const jobsExperiencesList = getJobExperienceList();
   const socialMediasList = getSocialMediaList();
   const [projectsList, setProjectList] = useState([]);
   const [statusCode, setStatusCode] = useState(0);
+  const [projectViewGrid, setProjectViewGrid] = useState(false);
 
   useEffect(() => {
     getGithubRepositories().then(data => {
@@ -90,8 +92,18 @@ export default function Main() {
             </section>
             <section className="default-outer-container">
                 <div className="default-inner-container">
-                    <h1 id="projetos" className="section-title">Projetos</h1>
-                    <div className="display-flex flex-direction-column gap-20-px">
+                    <div className="display-flex justify-content-space-between align-items-center">
+                        <h1 id="projetos" className="section-title">Projetos</h1>
+                        <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
+                            {
+                                projectViewGrid ?
+                                    <FiGrid className="font-size-25-px"/>
+                                :
+                                    <FiList className="font-size-25-px"/>
+                            }
+                        </button>
+                    </div>
+                    <div className={`${projectViewGrid ? "flex-flow-wrap gap-40-px" : "flex-direction-column gap-20-px"} display-flex justify-content-center`}>
                         {
                             statusCode == 200 ?
                                 (projectsList.map(project => (
@@ -105,6 +117,7 @@ export default function Main() {
                                         projectName={project.name}
                                         description={project.description}
                                         languagesList={project.languages}
+                                        isGridStyle={projectViewGrid}
                                     />
                                 )))
                             :
