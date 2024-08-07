@@ -14,18 +14,26 @@
   border: 1px solid red;
 }
 
-a {
-  color: black;
-  text-decoration: none;
-}
-
 header {
   background-color: rgba(255, 99, 71, 0);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(2.3px);
+}
+
+main {
+  background-color: $quaternary-yellow;
+  background-image: paint(dot-grid);
+  --dot-size: 5px;
+  --dot-spacing: 8px;
+  --dot-color: #{$tertiary-yellow};
 }
 
 body {
   overflow-x: hidden;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 
 button {

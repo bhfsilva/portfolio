@@ -25,8 +25,8 @@ export default function Main() {
   }, []);
 
   return(
-    <> 
-        <header className="default-outer-container z-index-100 position-fixed top-0-px left-0-px right-0-px height-125-px align-items-center">
+    <main> 
+        <header className="default-outer-container position-relative z-index-2 height-125-px align-items-center">
             <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
                 <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
                 <nav className="display-flex gap-35-px font-size-23-px">
@@ -125,8 +125,8 @@ export default function Main() {
                         }
                     </div>
                 </div>
-            </section>
-        </main>
-    </> 
+            </section>  
+        </div>
+    </main> 
   )
 }
