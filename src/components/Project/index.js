@@ -30,8 +30,8 @@ export default function Project({url, imageUrl, projectName, description, langua
       href={url}
       target="_blank"
       className={
-        `${isGridStyle ? "flex-direction-column width-30-percent justify-content-center" : ""}
-        position-relative padding-20-px position-relative display-flex align-items-center gap-20-px border-radius-8-px ${styles.projectComponentBox}
+        `${isGridStyle ? "flex-direction-column width-500-px justify-content-center" : ""}
+        custom-container position-relative padding-20-px position-relative display-flex align-items-center gap-20-px border-radius-8-px ${styles.projectComponentBox} 
       `}
       >
       <img src={imageUrl} alt={`${projectName} project image`} className="width-40-percent min-width-200-px border-radius-4-px"/>
@@ -45,7 +45,7 @@ export default function Project({url, imageUrl, projectName, description, langua
           {sanitizedProjectName}
         </h1>
         <p className="line-height-30-px font-size-18-px">{description}</p>
-        <div className="display-flex gap-5-px flex-flow-wrap">
+        <div className={`${isGridStyle ? "justify-content-center" : ""} display-flex gap-5-px flex-flow-wrap`}>
           <b className="font-weight-600">Tecnologias:</b>
           {languagesList.map((language, index) => (
             <p key={`${index}-language`} className={`${index == languagesList.length - 1 ? "" : styles.slashSeparated}`}>
