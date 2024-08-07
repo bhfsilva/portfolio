@@ -1,10 +1,25 @@
 import { useEffect, useState } from "react";
 import { getJobExperienceList, getSocialMediaList, getGithubRepositories } from "/services/portfolioService.js";
 import { LiaFileDownloadSolid } from "react-icons/lia";
+import { IoMdCheckmark, IoMdClose } from "react-icons/io";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiGrid, FiList } from "react-icons/fi";
 import JobExperience from "/src/components/JobExperience";
 import SocialMediaLink from "/src/components/SocialMediaLink";
 import Project from "/src/components/Project";
+
+function renderStatusIcon(responseStatusCode) {
+    switch(responseStatusCode) {
+        case 1:
+            return (<AiOutlineLoading3Quarters color="gray" id="loading-icon" className="font-size-2-rem"/>);
+        case 200:
+            return (<IoMdCheckmark color="green" className="font-size-2-rem"/>);
+        case 500:
+            return (<IoMdClose color="red" className="font-size-2-rem"/>);
+        default:
+            return "";
+    }
+}
 
 export default function Main() {
   const jobsExperiencesList = getJobExperienceList();
@@ -12,6 +27,26 @@ export default function Main() {
   const [projectsList, setProjectList] = useState([]);
   const [statusCode, setStatusCode] = useState(0);
   const [projectViewGrid, setProjectViewGrid] = useState(false);
+    const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
+    const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
+
+    function submitForm(event){
+        setResponseStatusNotionAPI(1);
+        event.preventDefault();
+        setContactObject({ username: "", email: "", message: "" });
+        fetch("/api/notion",
+            {
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+                body: JSON.stringify({ author: contactObject.username, contact: contactObject.email, comment: contactObject.message })
+            }
+        ).then(response => {
+            setResponseStatusNotionAPI(response.status);
+            setTimeout(() => {
+                setResponseStatusNotionAPI(0);
+            }, 3000);
+        })
+    }
 
   useEffect(() => {
     getGithubRepositories().then(data => {
