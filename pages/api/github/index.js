@@ -1,5 +1,3 @@
-const GITHUB_KEY = "<ADD KEY>";
-
 export const config = {
   api: {
     externalResolver: true,
@@ -10,7 +8,7 @@ export default async function handler(_, res) {
   try {
     const response = await fetch('https://api.github.com/graphql', {
       headers: {
-        "Authorization": `Bearer ${GITHUB_KEY}`,
+        "Authorization": `Bearer ${process.env.GITHUB_KEY}`,
         "Content-Type": "application/json",
         "User-Agent": "bhfsilva",
       },

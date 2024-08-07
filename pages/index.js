@@ -1,45 +1,23 @@
 import { useEffect, useState } from "react";
-import { getJobExperienceList, getSocialMediaList } from "/assets/infoService.js";
+import { getJobExperienceList, getSocialMediaList, getGithubRepositories } from "/services/portfolioService.js";
 import { LiaFileDownloadSolid } from "react-icons/lia";
+import { FiGrid, FiList } from "react-icons/fi";
 import JobExperience from "/src/components/JobExperience";
 import SocialMediaLink from "/src/components/SocialMediaLink";
-import Project from "../src/components/Project";
+import Project from "/src/components/Project";
 
 export default function Main() {
   const jobsExperiencesList = getJobExperienceList();
   const socialMediasList = getSocialMediaList();
   const [projectsList, setProjectList] = useState([]);
   const [statusCode, setStatusCode] = useState(0);
+  const [projectViewGrid, setProjectViewGrid] = useState(false);
 
   useEffect(() => {
-      const getGithubRepositories = async () => {
-          try {
-            //requisicao sendo feita para API customizada do Next.JS para que token nao seja mostrado no chrome dev tools
-            const response = await fetch("/api/github");
-            const responseData = await response.json();
-            const repositoryList = responseData["data"]["result"]["repositories"]["list"].map(repository => {
-                const repositoryObject = repository.item;
-                return {
-                    id: repositoryObject.id,
-                    owner: repositoryObject.owner.name,
-                    image: repositoryObject.image,
-                    name: repositoryObject.name,
-                    description: repositoryObject.description,
-                    url: repositoryObject.url,
-                    isFork: repositoryObject.isFork,
-                    isPrivate: repositoryObject.isPrivate,
-                    isUserConfigurationRepository: repositoryObject.isUserConfigurationRepository,
-                    languages: repositoryObject.languages.list.map(language => language.item.name)
-                }
-            });
-            setProjectList(repositoryList);
-            setStatusCode(response.status);
-        } catch (error) {
-            console.log(error);
-            setStatusCode(404);
-        }
-    };
-    getGithubRepositories()
+    getGithubRepositories().then(data => {
+        setProjectList(data.responseList)
+        setStatusCode(data.responseStatus)
+    })
   }, [])
 
   useEffect(() => {
@@ -114,8 +92,18 @@ export default function Main() {
             </section>
             <section className="default-outer-container">
                 <div className="default-inner-container">
-                    <h1 id="projetos" className="section-title">Projetos</h1>
-                    <div className="display-flex flex-direction-column gap-20-px">
+                    <div className="display-flex justify-content-space-between align-items-center">
+                        <h1 id="projetos" className="section-title">Projetos</h1>
+                        <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
+                            {
+                                projectViewGrid ?
+                                    <FiGrid className="font-size-25-px"/>
+                                :
+                                    <FiList className="font-size-25-px"/>
+                            }
+                        </button>
+                    </div>
+                    <div className={`${projectViewGrid ? "flex-flow-wrap gap-40-px" : "flex-direction-column gap-20-px"} display-flex justify-content-center`}>
                         {
                             statusCode == 200 ?
                                 (projectsList.map(project => (
@@ -129,10 +117,11 @@ export default function Main() {
                                         projectName={project.name}
                                         description={project.description}
                                         languagesList={project.languages}
+                                        isGridStyle={projectViewGrid}
                                     />
                                 )))
                             :
-                                (<p>Erro ao consultar repositórios no Github, acesse: <a href="https://github.com/bhfsilva?tab=repositories">https://github.com/bhfsilva?tab=repositories</a></p>)
+                                (<p>Erro ao consultar repositórios no Github, acesse: <a href="https://github.com/bhfsilva?tab=repositories">https://github.com/bhfsilva</a></p>)
                         }
                     </div>
                 </div>
