@@ -8,7 +8,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
   const [showTaskListState, setShowTaskList] = useState(showTaskListOption);
 
   return (
-    <div className={`${styles.jobExperienceComponentBox} padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px`}>
+    <div className="custom-container padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px">
       <div className="display-flex justify-content-space-between">
         <div className="display-flex gap-25-px">
           <img src={organizationLogo} alt={`${organizationName} logo`} className="height-120-px width-120-px"/>

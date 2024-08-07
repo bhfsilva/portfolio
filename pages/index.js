@@ -36,10 +36,10 @@ export default function Main() {
                 </nav>
             </div>
         </header>
-        <main>
-            <section className="default-outer-container position-relative margin-top-125-px">
+        <div>
+            <section className="default-outer-container position-relative">
                 <div className="position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
-                    <div className="display-flex flex-direction-column justify-content-space-between">
+                    <div className="display-flex flex-direction-column justify-content-space-between z-index-99">
                         <h1 className="font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
                             <span id="waving-emoji" className="margin-left-10-px">&#128075;</span>
@@ -61,7 +61,7 @@ export default function Main() {
                             ))}
                         </div>
                     </div>
-                    <img className="position-absolute top--90-px right--99-px z-index--1" src="/static/intro/background-blob.gif" alt="blob gif"/>
+                    <img className="position-absolute top--90-px right--4-percent z-index-1" src="/static/intro/background-blob.gif" alt="blob gif"/>
                 </div>
             </section>
             <section className="default-outer-container">

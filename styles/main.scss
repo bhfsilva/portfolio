@@ -84,6 +84,7 @@ h1 {
 @include generate-class-by-increment(top, -100, 125, px);
 @include generate-class-by-increment(left, -1, 0, px);
 @include generate-class-by-increment(right, -100, 100, px);
+@include generate-class-by-increment(right, -100, 0, percent);
 @include generate-class-by-increment(min-width, 0, 300, px);
 @include generate-class-by-increment(width, 0, 100, percent);
 @include generate-class-by-increment(width, 0, 500, px);
