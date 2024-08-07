@@ -8,10 +8,39 @@ import Project from "../src/components/Project";
 export default function Main() {
   const jobsExperiencesList = getJobExperienceList();
   const socialMediasList = getSocialMediaList();
+  const [projectsList, setProjectList] = useState([]);
+  const [statusCode, setStatusCode] = useState(0);
 
   useEffect(() => {
-    CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
-  }, []);
+      const getGithubRepositories = async () => {
+          try {
+            //requisicao sendo feita para API customizada do Next.JS para que token nao seja mostrado no chrome dev tools
+            const response = await fetch("/api/github");
+            const responseData = await response.json();
+            const repositoryList = responseData["data"]["result"]["repositories"]["list"].map(repository => {
+                const repositoryObject = repository.item;
+                return {
+                    id: repositoryObject.id,
+                    owner: repositoryObject.owner.name,
+                    image: repositoryObject.image,
+                    name: repositoryObject.name,
+                    description: repositoryObject.description,
+                    url: repositoryObject.url,
+                    isFork: repositoryObject.isFork,
+                    isPrivate: repositoryObject.isPrivate,
+                    isUserConfigurationRepository: repositoryObject.isUserConfigurationRepository,
+                    languages: repositoryObject.languages.list.map(language => language.item.name)
+                }
+            });
+            setProjectList(repositoryList);
+            setStatusCode(response.status);
+        } catch (error) {
+            console.log(error);
+            setStatusCode(404);
+        }
+    };
+    getGithubRepositories()
+  }, [])
 
   useEffect(() => {
       CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
