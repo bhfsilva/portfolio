@@ -71,12 +71,14 @@ h1 {
 @include generate-class-by-values(flex-flow, (wrap));
 @include generate-class-by-values(text-align, (center, justify));
 @include generate-class-by-values(font-weight, (normal, bold));
+@include generate-class-by-values(text-transform, (capitalize));
 @include generate-class-by-increment(font-weight, 0, 900, null);
 @include generate-class-by-increment(top, -100, 125, px);
 @include generate-class-by-increment(left, -1, 0, px);
-@include generate-class-by-increment(right, -100, 0, px);
+@include generate-class-by-increment(right, -100, 100, px);
 @include generate-class-by-increment(width, 0, 100, percent);
-@include generate-class-by-increment(width, 0, 200, px);
+@include generate-class-by-increment(width, 0, 500, px);
+@include generate-class-by-values(width, (fit-content));
 @include generate-class-by-increment(height, 0, 600, px);
 @include generate-class-by-increment(height, 0, 200, percent);
 @include generate-class-by-increment(margin, 0, 20, px);

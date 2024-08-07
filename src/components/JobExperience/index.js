@@ -8,7 +8,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
   const [showTaskListState, setShowTaskList] = useState(showTaskListOption);
 
   return (
-    <div className={`${styles.jobExperienceComponentBox} padding-20-px border-radius-10-px margin-bottom-30-px display-flex flex-direction-column gap-10-px`}>
+    <div className={`${styles.jobExperienceComponentBox} padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px`}>
       <div className="display-flex justify-content-space-between">
         <div className="display-flex gap-25-px">
           <img src={organizationLogo} alt={`${organizationName} logo`} className="height-120-px width-120-px"/>
@@ -18,7 +18,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
               <p className="font-size-17-px">De {startMonthYear} até {endMonthYear ? endMonthYear : "atualmente"}</p>
             </div>
             <h1 className="font-weight-500">{position}</h1>
-            <h3 className="font-weight-500">{organizationName}</h3>
+            <h3 className="font-weight-500 font-size-21-px">{organizationName}</h3>
           </div>
         </div>
         <button
@@ -26,8 +26,8 @@ export default function JobExperience({organizationLogo, organizationName, posit
           className={`
             ${styles.showTasksButton}
             ${showTaskListState ? styles.rotateButton : ""}
-            font-size-2-rem display-flex align-items-center justify-content-center width-50-px height-50-px margin-top-20-px margin-right-50-px border-radius-40-px`}
-        >
+            font-size-2-rem display-flex align-items-center justify-content-center width-50-px height-50-px margin-top-20-px margin-right-50-px border-radius-40-px
+          `}>
           <FiChevronDown className="margin-top-2-px"/>
         </button>
       </div>
