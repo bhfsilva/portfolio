@@ -16,7 +16,7 @@
 
 header {
   background-color: rgba(255, 99, 71, 0);
-  backdrop-filter: blur(2.3px);
+  backdrop-filter: blur(1.3px);
 }
 
 main {
@@ -103,13 +103,13 @@ h1 {
 @include generate-class-by-values(width, (fit-content));
 @include generate-class-by-increment(height, 0, 600, px);
 @include generate-class-by-increment(height, 0, 200, percent);
-@include generate-class-by-increment(margin, 0, 20, px);
-@include generate-class-by-increment(padding, 0, 20, px);
+@include generate-class-by-increment(margin, 0, 40, px);
+@include generate-class-by-increment(padding, 0, 50, px);
 @include generate-class-by-increment(gap, 0, 70, px);
 @include generate-class-by-increment(font-size, 0, 30, px);
 @include generate-class-by-increment(font-size, 0, 10, rem);
 @include generate-class-by-increment(line-height, 0, 50, px);
 @include generate-class-by-increment(z-index, -10, 100, null);
 @include generate-class-by-increment(border-radius, 0, 50, px);
-@include generate-position-class-by-increment(padding, (left, right), 0, 40, px);
-@include generate-position-class-by-increment(margin, (top, bottom, left, right), 0, 200, px);
+@include generate-position-class-by-increment(padding, (top, left, right), 0, 40, px);
+@include generate-position-class-by-increment(margin, (top, bottom, left, right), -1, 200, px);

@@ -22,11 +22,11 @@ function renderStatusIcon(responseStatusCode) {
 }
 
 export default function Main() {
-  const jobsExperiencesList = getJobExperienceList();
-  const socialMediasList = getSocialMediaList();
-  const [projectsList, setProjectList] = useState([]);
-  const [statusCode, setStatusCode] = useState(0);
-  const [projectViewGrid, setProjectViewGrid] = useState(false);
+    const jobsExperiencesList = getJobExperienceList();
+    const socialMediasList = getSocialMediaList();
+    const [projectsList, setProjectsList] = useState([]);
+    const [projectViewGrid, setProjectViewGrid] = useState(false);
+    const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(0);
     const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
     const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
 
@@ -48,16 +48,14 @@ export default function Main() {
         })
     }
 
-  useEffect(() => {
-    getGithubRepositories().then(data => {
-        setProjectList(data.responseList)
-        setStatusCode(data.responseStatus)
-    })
-  }, [])
+    useEffect(() => {
+        CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
 
-  useEffect(() => {
-      CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
-  }, []);
+        getGithubRepositories().then(data => {
+            setProjectsList(data.responseList)
+            setResponseStatusGithubAPI(data.responseStatus)
+        });
+    }, []);
 
   return(
     <main> 
@@ -140,7 +138,7 @@ export default function Main() {
                     </div>
                     <div className={`${projectViewGrid ? "flex-flow-wrap gap-40-px" : "flex-direction-column gap-20-px"} display-flex justify-content-center`}>
                         {
-                            statusCode == 200 ?
+                            responseStatusGithubAPI == 200 ?
                                 (projectsList.map(project => (
 
                                     (project.owner == "bhfsilva" && !project.isFork && !project.isPrivate && !project.isUserConfigurationRepository) &&
@@ -161,6 +159,63 @@ export default function Main() {
                     </div>
                 </div>
             </section>  
+            <section className="default-outer-container">
+                <div className="default-inner-container">
+                    <div id="contato" className="margin-top-40-px">
+                        <fieldset className="custom-container contact-fieldset-component padding-top-40-px padding-30-px">
+                            <legend className="section-title padding-bottom-0-px margin-bottom-0-px">Entre em contato!</legend>
+                            <div className="display-flex justify-content-center gap-20-px">
+                                <div className="display-flex flex-direction-column gap-20-px">
+                                    {socialMediasList.map((socialMedia, index) => (
+                                        <SocialMediaLink 
+                                            key={`${index}-social-media-contact`}
+                                            Icon={socialMedia.Icon}
+                                            url={socialMedia.url}
+                                            socialMediaName={socialMedia.socialMediaName}
+                                        />
+                                    ))}
+                                </div>
+                                <hr/>
+                                <form onSubmit={(event) => submitForm(event)} className="width-50-percent display-flex flex-direction-column justify-content-space-between"> 
+                                    <input
+                                        onChange={(event) => setContactObject(prevState => ({...prevState, username: event.target.value}))}
+                                        value={ contactObject.username }
+                                        className="border-radius-5-px padding-10-px height-50-px"
+                                        type="text"
+                                        placeholder="Insira seu nome *"
+                                        required
+                                    />
+                                    <input
+                                        onChange={(event) => setContactObject(prevState => ({...prevState, email: event.target.value}))}
+                                        value={ contactObject.email }
+                                        className="border-radius-5-px padding-10-px height-50-px"
+                                        type="email"
+                                        placeholder="Insira seu email *"
+                                        required
+                                    />
+                                    <textarea
+                                        onChange={(event) => setContactObject(prevState => ({...prevState, message: event.target.value}))}
+                                        value={ contactObject.message }
+                                        className="border-radius-5-px padding-10-px height-150-px"
+                                        placeholder="Deixe um comentário *"
+                                        required
+                                    />
+                                    <div className="display-flex align-items-center gap-10-px">
+                                        <button
+                                            className="custom-button border-radius-5-px"
+                                            type="submit"
+                                            disabled={contactObject.username && contactObject.email && contactObject.message ? false : true}
+                                        >        
+                                            Enviar
+                                        </button>
+                                        {renderStatusIcon(responseStatusNotionAPI)}
+                                    </div>
+                                </form>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </section>
         </div>
     </main> 
   )
