@@ -4,6 +4,7 @@ import { LiaFileDownloadSolid } from "react-icons/lia";
 import { IoMdCheckmark, IoMdClose } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiGrid, FiList } from "react-icons/fi";
+import { PiMaskSad } from "react-icons/pi";
 import JobExperience from "/src/components/JobExperience";
 import SocialMediaLink from "/src/components/SocialMediaLink";
 import Project from "/src/components/Project";
@@ -157,8 +158,15 @@ export default function Main() {
                                     />
                                 )))
                             :
-                                (
-                                    <p>Erro ao consultar repositórios do Github<br/>acesse: <a href="https://github.com/bhfsilva">https://github.com/bhfsilva</a></p>
+                                responseStatusGithubAPI == 500 && (
+                                    <div className="width-100-percent font-size-1-dot-3-rem">
+                                        <p>Erro ao consultar repositórios do Github <PiMaskSad/></p>
+                                        <p>Acesse:&nbsp;
+                                            <a style={{color: 'blue', textDecoration: 'underline'}} target="_blank" href="https://github.com/bhfsilva?tab=repositories">
+                                                https://github.com/bhfsilva?tab=repositories
+                                            </a>
+                                        </p>
+                                    </div>
                                 )
                         }
                     </div>
