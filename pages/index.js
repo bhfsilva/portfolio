@@ -26,7 +26,7 @@ export default function Main() {
     const socialMediasList = getSocialMediaList();
     const [projectsList, setProjectsList] = useState([]);
     const [projectViewGrid, setProjectViewGrid] = useState(false);
-    const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(0);
+    const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(1);
     const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
     const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
 
@@ -126,7 +126,10 @@ export default function Main() {
             <section className="default-outer-container">
                 <div className="default-inner-container">
                     <div className="display-flex justify-content-space-between align-items-center">
-                        <h1 id="projetos" className="section-title">Projetos</h1>
+                        <div className="display-flex align-items-center gap-15-px">
+                            <h1 id="projetos" className="section-title">Projetos</h1>
+                            {renderStatusIcon(responseStatusGithubAPI)}
+                        </div>
                         <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
                             {
                                 projectViewGrid ?
@@ -154,29 +157,33 @@ export default function Main() {
                                     />
                                 )))
                             :
-                                (<p>Erro ao consultar repositórios no Github, acesse: <a href="https://github.com/bhfsilva?tab=repositories">https://github.com/bhfsilva</a></p>)
+                                (
+                                    <p>Erro ao consultar repositórios do Github<br/>acesse: <a href="https://github.com/bhfsilva">https://github.com/bhfsilva</a></p>
+                                )
                         }
                     </div>
                 </div>
             </section>  
             <section className="default-outer-container">
                 <div className="default-inner-container">
-                    <div id="contato" className="margin-top-40-px">
+                    <div id="contato" className="margin-top-80-px">
                         <fieldset className="custom-container contact-fieldset-component padding-top-40-px padding-30-px">
                             <legend className="section-title padding-bottom-0-px margin-bottom-0-px">Entre em contato!</legend>
-                            <div className="display-flex justify-content-center gap-20-px">
+                            <div className="flex-flow-wrap display-flex justify-content-center gap-20-px">
                                 <div className="display-flex flex-direction-column gap-20-px">
                                     {socialMediasList.map((socialMedia, index) => (
                                         <SocialMediaLink 
                                             key={`${index}-social-media-contact`}
                                             Icon={socialMedia.Icon}
                                             url={socialMedia.url}
+                                            username={socialMedia.username}
                                             socialMediaName={socialMedia.socialMediaName}
+                                            size="medium"
                                         />
                                     ))}
                                 </div>
                                 <hr/>
-                                <form onSubmit={(event) => submitForm(event)} className="width-50-percent display-flex flex-direction-column justify-content-space-between"> 
+                                <form onSubmit={(event) => submitForm(event)} className="width-60-percent height-340-px display-flex flex-direction-column justify-content-space-between"> 
                                     <input
                                         onChange={(event) => setContactObject(prevState => ({...prevState, username: event.target.value}))}
                                         value={ contactObject.username }
@@ -208,7 +215,9 @@ export default function Main() {
                                         >        
                                             Enviar
                                         </button>
-                                        {renderStatusIcon(responseStatusNotionAPI)}
+                                        {
+                                            renderStatusIcon(responseStatusNotionAPI)
+                                        }
                                     </div>
                                 </form>
                             </div>

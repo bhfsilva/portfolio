@@ -83,7 +83,7 @@ h1 {
 }
 
 // geracao de classes css customizadas
-@include generate-class-by-values(display, (flex));
+@include generate-class-by-values(display, (flex, none));
 @include generate-class-by-values(flex-direction, (column));
 @include generate-class-by-values(align-items, (center));
 @include generate-class-by-values(justify-content, (center, space-between, space-around, space-evenly));
