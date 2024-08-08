@@ -225,6 +225,11 @@ export default function Main() {
                     </div>
                 </div>
             </section>
+            <footer className="default-outer-container margin-top-30-px height-50-px">
+                <div className="default-inner-container display-flex align-items-center justify-content-center">
+                    <p>&copy; <a href="https://github.com/bhfsilva" target="_blank" rel="noreferrer">Bruno Henrique</a> - {new Date().getFullYear()}</p>
+                </div>
+            </footer>
         </div>
     </main> 
   )

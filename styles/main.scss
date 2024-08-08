@@ -51,6 +51,13 @@ h1 {
   }
 }
 
+footer {
+  background-color: $primary-yellow;
+  a{
+    text-decoration: underline;
+  }
+}
+
 #waving-emoji {
   animation-name: wave;
   animation-duration: 1.3s;
