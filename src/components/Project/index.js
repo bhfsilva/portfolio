@@ -44,8 +44,8 @@ export default function Project({url, imageUrl, projectName, description, langua
         >
           {sanitizedProjectName}
         </h1>
-        <p className="line-height-30-px font-size-18-px">{description}</p>
-        <div className={`${isGridStyle ? "justify-content-center" : ""} display-flex gap-5-px flex-flow-wrap`}>
+        <p className="font-size-1-dot-1-rem line-height-30-px">{description}</p>
+        <div className={`${isGridStyle ? "justify-content-center" : ""} font-size-1-dot-1-rem display-flex gap-5-px flex-flow-wrap`}>
           <b className="font-weight-600">Tecnologias:</b>
           {languagesList.map((language, index) => (
             <p key={`${index}-language`} className={`${index == languagesList.length - 1 ? "" : styles.slashSeparated}`}>

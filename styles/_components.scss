@@ -41,8 +41,16 @@
 .contact-fieldset-component {
   border-width: 3px;
   border-radius: 15px;
+  div {
+    & > div a:nth-child(2){
+      order: 3;
+    }
+  }
   hr {
     border: 1px solid $primary-yellow;
+  }
+  svg {
+    color: $secondary-yellow;
   }
   form {
     textarea {
