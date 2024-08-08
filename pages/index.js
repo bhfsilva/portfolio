@@ -76,7 +76,7 @@ export default function Main() {
                     <div className="display-flex flex-direction-column justify-content-space-between z-index-2">
                         <h1 className="font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
-                            <span id="waving-emoji" className="margin-left-10-px">&#128075;</span>
+                            <span id="waving-emoji" className="margin-left-15-px"><img width="50" src="/static/intro/waving-emoji.svg"/></span>
                         </h1>
                         <p className="font-size-1-dot-3-rem margin-top-30-px margin-bottom-30-px width-55-percent line-height-40-px text-align-justify">
                             Estou continuamente me especializando em desenvolvimento back-end, focando na criação de aplicações robustas e soluções criativas.
