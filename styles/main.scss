@@ -10,8 +10,12 @@
   font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
 }
 
-.ver {
-  border: 1px solid red;
+.font-size-1-dot-1-rem {
+  font-size: 1.1rem;
+}
+
+.font-size-1-dot-3-rem {
+  font-size: 1.3rem;
 }
 
 header {
@@ -97,26 +101,23 @@ footer {
 @include generate-class-by-values(position, (relative, absolute, fixed));
 @include generate-class-by-values(flex-flow, (wrap));
 @include generate-class-by-values(text-align, (center, justify));
-@include generate-class-by-values(font-weight, (normal, bold));
+@include generate-class-by-values(font-weight, (normal));
 @include generate-class-by-values(text-transform, (capitalize));
-@include generate-class-by-increment(font-weight, 0, 900, null);
-@include generate-class-by-increment(top, -100, 125, px);
-@include generate-class-by-increment(left, -1, 0, px);
-@include generate-class-by-increment(right, -100, 100, px);
-@include generate-class-by-increment(right, -100, 0, percent);
-@include generate-class-by-increment(min-width, 0, 300, px);
+@include generate-class-by-increment(font-weight, 400, 600, null);
+@include generate-class-by-increment(top, -100, 80, px);
+@include generate-class-by-increment(right, -12, 30, px);
+@include generate-class-by-increment(right, -5, 0, percent);
+@include generate-class-by-increment(min-width, 199, 200, px);
 @include generate-class-by-increment(width, 0, 100, percent);
 @include generate-class-by-increment(width, 0, 500, px);
-@include generate-class-by-values(width, (fit-content));
 @include generate-class-by-increment(height, 0, 600, px);
-@include generate-class-by-increment(height, 0, 200, percent);
-@include generate-class-by-increment(margin, 0, 40, px);
-@include generate-class-by-increment(padding, 0, 50, px);
+@include generate-class-by-increment(height, 0, 100, percent);
+@include generate-class-by-increment(padding, 0, 30, px);
 @include generate-class-by-increment(gap, 0, 70, px);
-@include generate-class-by-increment(font-size, 0, 30, px);
-@include generate-class-by-increment(font-size, 0, 10, rem);
-@include generate-class-by-increment(line-height, 0, 50, px);
-@include generate-class-by-increment(z-index, -10, 100, null);
-@include generate-class-by-increment(border-radius, 0, 50, px);
-@include generate-position-class-by-increment(padding, (top, left, right), 0, 40, px);
-@include generate-position-class-by-increment(margin, (top, bottom, left, right), -1, 200, px);
+@include generate-class-by-increment(font-size, 24, 25, px);
+@include generate-class-by-increment(font-size, 1, 2, rem);
+@include generate-class-by-increment(line-height, 20, 40, px);
+@include generate-class-by-increment(z-index, 0, 2, null);
+@include generate-class-by-increment(border-radius, 0, 40, px);
+@include generate-position-class-by-increment(padding, (top), 30, 40, px);
+@include generate-position-class-by-increment(margin, (top, bottom, left, right), -1, 80, px);

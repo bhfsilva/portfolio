@@ -15,10 +15,10 @@ export default function JobExperience({organizationLogo, organizationName, posit
           <div className="display-flex flex-direction-column justify-content-center gap-10-px">
             <div className="display-flex align-items-center gap-3-px">
               <MdOutlineCalendarMonth className="font-size-25-px"/>
-              <p className="font-size-17-px">De {startMonthYear} até {endMonthYear ? endMonthYear : "atualmente"}</p>
+              <p>De {startMonthYear} até {endMonthYear ? endMonthYear : "atualmente"}</p>
             </div>
             <h1 className="font-weight-500">{position}</h1>
-            <h3 className="font-weight-500 font-size-21-px">{organizationName}</h3>
+            <h3 className="font-weight-500">{organizationName}</h3>
           </div>
         </div>
         <button
@@ -31,7 +31,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
           <FiChevronDown className="margin-top-2-px"/>
         </button>
       </div>
-      <div className="display-flex flex-flow-wrap font-size-18-px gap-5-px">
+      <div className="font-size-1-dot-1-rem display-flex flex-flow-wrap gap-5-px">
         <b className="font-weight-600">Tecnologias:</b>
         {skills.map((skill, index) => (
           <p key={`${index}-skill`} className={`${index == skills.length - 1 ? styles.dotEnd : styles.slashSeparated}`}>
@@ -39,7 +39,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
           </p>
         ))}
       </div>
-      {showTaskListState && <ul className="font-size-18-px">
+      {showTaskListState && <ul>
         {tasks.map((task, index) => (
           <li key={`${index}-task`} className="line-height-30-px margin-bottom-5-px">
             {task}

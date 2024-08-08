@@ -49,6 +49,9 @@
   hr {
     border: 1px solid $primary-yellow;
   }
+  svg {
+    color: $secondary-yellow;
+  }
   form {
     textarea {
       resize: none;

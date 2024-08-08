@@ -62,7 +62,7 @@ export default function Main() {
         <header className="default-outer-container position-relative z-index-2 height-125-px align-items-center">
             <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
                 <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
-                <nav className="display-flex gap-35-px font-size-23-px">
+                <nav className="display-flex gap-35-px font-size-1-dot-3-rem">
                     <a href="#experiencias">Experiências</a>
                     <a href="#projetos">Projetos</a>
                     <a href="#contato">Contato</a>
@@ -72,12 +72,12 @@ export default function Main() {
         <div>
             <section className="default-outer-container position-relative">
                 <div className="position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
-                    <div className="display-flex flex-direction-column justify-content-space-between z-index-99">
+                    <div className="display-flex flex-direction-column justify-content-space-between z-index-2">
                         <h1 className="font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
                             <span id="waving-emoji" className="margin-left-10-px">&#128075;</span>
                         </h1>
-                        <p className="margin-top-30-px margin-bottom-30-px width-55-percent font-size-21-px line-height-40-px text-align-justify">
+                        <p className="font-size-1-dot-3-rem margin-top-30-px margin-bottom-30-px width-55-percent line-height-40-px text-align-justify">
                             Estou continuamente me especializando em desenvolvimento back-end, focando na criação de aplicações robustas e soluções criativas.
                             Com um vasto conhecimento em linguagens como Java, Python e frameworks JavaScript modernos,
                             busco sempre resolver os mais variados problemas buscando as melhores soluções!
@@ -117,7 +117,7 @@ export default function Main() {
                         <div className="display-flex justify-content-center">
                             <a className="custom-button" download href="static/jobs-experiences/assets/Bruno Henrique Fernandes da Silva.pdf">
                                 <LiaFileDownloadSolid className="font-size-2-rem"/>
-                                <p className="font-size-25-px">Download CV</p>
+                                <p style={{ fontSize: "1.5rem" }}>Download CV</p>
                             </a>
                         </div>
                     </div>
@@ -168,9 +168,9 @@ export default function Main() {
                 <div className="default-inner-container">
                     <div id="contato" className="margin-top-80-px">
                         <fieldset className="custom-container contact-fieldset-component padding-top-40-px padding-30-px">
-                            <legend className="section-title padding-bottom-0-px margin-bottom-0-px">Entre em contato!</legend>
+                            <legend className="section-title margin-bottom-0-px">Entre em contato!</legend>
                             <div className="flex-flow-wrap display-flex justify-content-center gap-20-px">
-                                <div className="display-flex flex-direction-column gap-20-px">
+                                <div className="display-flex flex-direction-column justify-content-space-between">
                                     {socialMediasList.map((socialMedia, index) => (
                                         <SocialMediaLink 
                                             key={`${index}-social-media-contact`}
@@ -187,7 +187,7 @@ export default function Main() {
                                     <input
                                         onChange={(event) => setContactObject(prevState => ({...prevState, username: event.target.value}))}
                                         value={ contactObject.username }
-                                        className="border-radius-5-px padding-10-px height-50-px"
+                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-50-px"
                                         type="text"
                                         placeholder="Insira seu nome *"
                                         required
@@ -195,7 +195,7 @@ export default function Main() {
                                     <input
                                         onChange={(event) => setContactObject(prevState => ({...prevState, email: event.target.value}))}
                                         value={ contactObject.email }
-                                        className="border-radius-5-px padding-10-px height-50-px"
+                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-50-px"
                                         type="email"
                                         placeholder="Insira seu email *"
                                         required
@@ -203,13 +203,13 @@ export default function Main() {
                                     <textarea
                                         onChange={(event) => setContactObject(prevState => ({...prevState, message: event.target.value}))}
                                         value={ contactObject.message }
-                                        className="border-radius-5-px padding-10-px height-150-px"
+                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-150-px"
                                         placeholder="Deixe um comentário *"
                                         required
                                     />
                                     <div className="display-flex align-items-center gap-10-px">
                                         <button
-                                            className="custom-button border-radius-5-px"
+                                            className="font-size-1-dot-1-rem custom-button border-radius-5-px"
                                             type="submit"
                                             disabled={contactObject.username && contactObject.email && contactObject.message ? false : true}
                                         >        

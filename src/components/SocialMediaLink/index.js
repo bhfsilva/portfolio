@@ -2,14 +2,14 @@ export default function SocialMediaLink({url, Icon, username, socialMediaName, s
 
   let styles = {
     icon : ["font-size-3-rem"],
-    socialMediaTitle: ["font-size-30-px"],
-    username: ["font-size-23-px"]
+    socialMediaTitle: ["font-size-2-rem"],
+    username: ["font-size-1-dot-3-rem"]
   }
 
   if (size == "medium") {
     styles.icon = ["font-size-2-rem"]
-    styles.socialMediaTitle = ["font-size-28-px"]
-    styles.username = ["font-size-20-px"]
+    styles.socialMediaTitle = ["font-size-1-dot-3-rem"]
+    styles.username = ["font-size-1-dot-1-rem"]
   }
 
   return (
