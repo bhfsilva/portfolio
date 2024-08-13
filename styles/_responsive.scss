@@ -109,8 +109,12 @@
 
 @media (max-width: 545px) {
   .section-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
+  }
+  #projects-title-container {
+    width: 100%;
+    justify-content: center;
   }
 }
 

@@ -130,7 +130,7 @@ export default function Main() {
             <section className="default-outer-container">
                 <div id="projects-container" className="default-inner-container">
                     <div className="display-flex justify-content-space-between align-items-center">
-                        <div className="display-flex align-items-center gap-15-px">
+                        <div id="projects-title-container" className="display-flex align-items-center gap-15-px">
                             <h1 id="projetos" className="section-title">Projetos</h1>
                             {renderStatusIcon(responseStatusGithubAPI)}
                         </div>
