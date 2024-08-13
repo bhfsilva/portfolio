@@ -31,7 +31,7 @@ export default function Main() {
     const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(1);
     const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
     const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
-    const [showMenu, setShowMenu] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
 
     function submitForm(event){
         setResponseStatusNotionAPI(1);
@@ -64,7 +64,7 @@ export default function Main() {
             <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
                 <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
                 <RiMenuFill id="header-menu-button" className="display-none font-size-3-rem" onClick={() => setShowMenu(!showMenu)}/>
-                <nav id="nav-container" className={`${showMenu ? "" : "display-none"} display-flex font-size-1-dot-3-rem gap-35-px`}>
+                <nav id="nav-container" responsive-menu-active={showMenu.toString()} className="display-flex font-size-1-dot-3-rem gap-35-px">
                     <a onClick={() => setShowMenu(false)} href="#experiencias">Experiências</a>
                     <a onClick={() => setShowMenu(false)} href="#projetos">Projetos</a>
                     <a onClick={() => setShowMenu(false)} href="#contato">Contato</a>
