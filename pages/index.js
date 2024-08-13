@@ -31,8 +31,7 @@ export default function Main() {
     const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(1);
     const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
     const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
-    const [showMenu, setShowMenu] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(10000000);
+    const [showMenu, setShowMenu] = useState(true);
 
     function submitForm(event){
         setResponseStatusNotionAPI(1);
@@ -55,21 +54,10 @@ export default function Main() {
     useEffect(() => {
         CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
 
-        window.addEventListener('resize', () => {
-            setWindowWidth(window.innerWidth)
-            if (window.innerWidth <= 810) {
-                setProjectViewGrid(true)
-            }
-        });
-
         getGithubRepositories().then(data => {
             setProjectsList(data.responseList)
             setResponseStatusGithubAPI(data.responseStatus)
         });
-
-        return () => {
-            window.removeEventListener("resize")
-        }
     }, []);
 
   return(
@@ -77,12 +65,12 @@ export default function Main() {
         <header id="header" className="default-outer-container position-relative z-index-3 height-125-px align-items-center">
             <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
                 <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
-                { windowWidth <= 700 && <RiMenuFill className="font-size-3-rem" onClick={() => setShowMenu(!showMenu)}/> }
-                { (windowWidth <= 700 && !showMenu) || <nav className={`${windowWidth <= 700 ? "responsive-menu-container" : "gap-35-px"} display-flex font-size-1-dot-3-rem`}>
+                <RiMenuFill id="header-menu-button" className="display-none font-size-3-rem" onClick={() => setShowMenu(!showMenu)}/>
+                <nav id="nav-container" className={`${showMenu ? "" : "display-none"} display-flex font-size-1-dot-3-rem gap-35-px`}>
                     <a onClick={() => setShowMenu(false)} href="#experiencias">Experiências</a>
                     <a onClick={() => setShowMenu(false)} href="#projetos">Projetos</a>
                     <a onClick={() => setShowMenu(false)} href="#contato">Contato</a>
-                </nav> }
+                </nav>
             </div>
         </header>
         <div>
@@ -98,7 +86,7 @@ export default function Main() {
                             Com um vasto conhecimento em linguagens como Java, Python e frameworks JavaScript modernos,
                             busco sempre resolver os mais variados problemas buscando as melhores soluções!
                         </p>
-                        <div className="display-flex flex-flow-wrap gap-70-px">
+                        <div id="social-media-intro-component" className="display-flex flex-flow-wrap gap-70-px">
                             {socialMediasList.map((socialMedia, index) => (
                                 <SocialMediaLink 
                                     key={`${index}-social-media`}
@@ -106,12 +94,11 @@ export default function Main() {
                                     url={socialMedia.url}
                                     username={socialMedia.username}
                                     socialMediaName={socialMedia.socialMediaName}
-                                    size={windowWidth <= 716 ? "medium" : "normal"}
                                 />
                             ))}
                         </div>
                     </div>
-                    <img className="position-absolute top--90-px right--4-percent z-index-1" src="/static/intro/background-blob.gif" alt="blob gif"/>
+                    <img className="position-absolute top--90-px right-0-px z-index-1" src="/static/intro/background-blob.gif" alt="blob gif"/>
                 </div>
             </section>
             <section className="default-outer-container">
@@ -141,20 +128,20 @@ export default function Main() {
                 </div>
             </section>
             <section className="default-outer-container">
-                <div className="default-inner-container">
+                <div id="projects-container" className="default-inner-container">
                     <div className="display-flex justify-content-space-between align-items-center">
                         <div className="display-flex align-items-center gap-15-px">
                             <h1 id="projetos" className="section-title">Projetos</h1>
                             {renderStatusIcon(responseStatusGithubAPI)}
                         </div>
-                        {(windowWidth >= 810) && <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
+                        <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
                             {
                                 projectViewGrid ?
                                     <FiGrid className="font-size-25-px"/>
                                 :
                                     <FiList className="font-size-25-px"/>
                             }
-                        </button>}
+                        </button>
                     </div>
                     <div className={`${projectViewGrid ? "flex-flow-wrap gap-40-px" : "flex-direction-column gap-20-px"} display-flex justify-content-center`}>
                         {
