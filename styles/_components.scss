@@ -4,7 +4,7 @@
 }
 
 .default-inner-container {
-  padding: 0px 70px;
+  padding: 0px 30px;
   max-width: 1450px;
   width: 100%;
 }
@@ -36,18 +36,6 @@
 .custom-container {
   border: 2px solid $primary-yellow;
   background-color: $quaternary-yellow;
-}
-
-.responsive-menu-container {
-  position: absolute;
-  flex-direction: column;
-  gap: 20px;
-  top: 100px;
-  right: 70px;
-  border: 2px solid $primary-yellow;
-  background-color: $tertiary-yellow;
-  padding: 25px 30px;
-  border-radius: 10px;
 }
 
 .contact-fieldset-component {

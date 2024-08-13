@@ -8,25 +8,23 @@ export default function JobExperience({organizationLogo, organizationName, posit
   const [showTaskListState, setShowTaskList] = useState(showTaskListOption);
 
   return (
-    <div className="custom-container padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px">
-      <div id="job-experience-component" className="display-flex justify-content-space-between">
-        <div className="display-flex gap-25-px align-items-center">
-          <img src={organizationLogo} alt={`${organizationName} logo`} className="height-120-px width-120-px"/>
-          <div className="display-flex flex-direction-column justify-content-center gap-10-px">
-            <div className="display-flex align-items-center gap-3-px">
-              <MdOutlineCalendarMonth className="font-size-25-px"/>
-              <p>De {startMonthYear} até {endMonthYear ? endMonthYear : "atualmente"}</p>
-            </div>
-            <h3 className="font-weight-500">{position}</h3>
-            <h4 className="font-weight-500">{organizationName}</h4>
+    <div id="job-experience-component" className="custom-container padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px">
+      <div id="job-experience-component-header" className="display-flex gap-20-px align-items-center position-relative">
+        <img src={organizationLogo} alt={`${organizationName} logo`} className="height-120-px width-120-px"/>
+        <div className="display-flex flex-direction-column justify-content-center gap-10-px">
+          <div className="display-flex align-items-center gap-3-px">
+            <MdOutlineCalendarMonth className="font-size-25-px"/>
+            <p>De {startMonthYear} até {endMonthYear ? endMonthYear : "atualmente"}</p>
           </div>
+          <h3 className="font-weight-500">{position}</h3>
+          <h4 className="font-weight-500">{organizationName}</h4>
         </div>
         <button
           onClick={() => setShowTaskList(!showTaskListState)}
           className={`
             ${styles.showTasksButton}
             ${showTaskListState ? styles.rotateButton : ""}
-            font-size-2-rem display-flex align-items-center justify-content-center width-50-px height-50-px border-radius-40-px
+            font-size-2-rem display-flex align-items-center justify-content-center width-50-px height-50-px border-radius-40-px position-absolute top--10-px right-10-px
           `}>
           <FiChevronDown className="margin-top-2-px"/>
         </button>

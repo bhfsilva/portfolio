@@ -30,22 +30,20 @@ export default function Project({url, imageUrl, projectName, description, langua
       href={url}
       target="_blank"
       className={
-        `${isGridStyle ? "flex-direction-column width-500-px justify-content-center" : ""}
+        `${isGridStyle ? `${styles.gridStyle}` : ""}
         custom-container position-relative padding-20-px position-relative display-flex align-items-center gap-20-px border-radius-8-px ${styles.projectComponentBox} 
       `}
       >
       <img src={imageUrl} alt={`${projectName} project image`} className="width-40-percent min-width-200-px border-radius-4-px"/>
-      <div className={`
-        ${isGridStyle ? "text-align-center align-items-center" : ""}
-        display-flex flex-direction-column gap-10-px width-100-percent height-100-percent justify-content-space-evenly`}>
-        <h1
-          className={`${isGridStyle ? "" : "width-70-percent"}
-          text-transform-capitalize font-weight-500`}
-        >
+      <div id="content" className={
+        `${isGridStyle ? "text-align-center align-items-center" : ""}
+        display-flex flex-direction-column gap-10-px width-100-percent height-100-percent justify-content-space-evenly
+        `}>
+        <h1 className="width-100-percent text-transform-capitalize font-weight-500">
           {sanitizedProjectName}
         </h1>
         <p className="font-size-1-dot-1-rem line-height-30-px">{description}</p>
-        <div className={`${isGridStyle ? "justify-content-center" : ""} font-size-1-dot-1-rem display-flex gap-5-px flex-flow-wrap`}>
+        <div className="font-size-1-dot-1-rem display-flex gap-5-px flex-flow-wrap">
           <b className="font-weight-600">Tecnologias:</b>
           {languagesList.map((language, index) => (
             <p key={`${index}-language`} className={`${index == languagesList.length - 1 ? "" : styles.slashSeparated}`}>
