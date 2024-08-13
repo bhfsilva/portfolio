@@ -69,15 +69,20 @@
   }
 
   #nav-container {
+    display: none;
     position: absolute;
     flex-direction: column;
     gap: 20px;
     top: 100px;
-    right: 70px;
+    right: 35px;
     border: 2px solid $primary-yellow;
     background-color: $tertiary-yellow;
     padding: 25px 30px;
     border-radius: 10px;
+  }
+
+  #nav-container[responsive-menu-active="true"] {
+    display: flex;
   }
 }
 
@@ -112,6 +117,7 @@
     font-size: 1.8rem;
     text-align: center;
   }
+
   #projects-title-container {
     width: 100%;
     justify-content: center;
