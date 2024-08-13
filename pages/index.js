@@ -56,8 +56,7 @@ export default function Main() {
         CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
 
         window.addEventListener('resize', () => {
-            setWindowWidth(window.innerWidth);
-            console.log(window.innerWidth)
+            setWindowWidth(window.innerWidth)
             if (window.innerWidth <= 810) {
                 setProjectViewGrid(true)
             }
