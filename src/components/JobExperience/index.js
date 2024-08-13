@@ -9,7 +9,7 @@ export default function JobExperience({organizationLogo, organizationName, posit
 
   return (
     <div className="custom-container padding-20-px border-radius-10-px display-flex flex-direction-column gap-10-px">
-      <div className="display-flex justify-content-space-between">
+      <div id="job-experience-component" className="display-flex justify-content-space-between">
         <div className="display-flex gap-25-px align-items-center">
           <img src={organizationLogo} alt={`${organizationName} logo`} className="height-120-px width-120-px"/>
           <div className="display-flex flex-direction-column justify-content-center gap-10-px">

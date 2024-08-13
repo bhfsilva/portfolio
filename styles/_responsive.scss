@@ -69,6 +69,25 @@
   }
 }
 
+@media (max-width: 545px) {
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  #job-experience-component {
+    & > div {
+      flex-direction: column;
+      width: 100%;
+    }
+    button {
+      position: absolute;
+    }
+  }
+}
+
 @media (max-width: 465px) {
   #intro-container {
     & > div {
@@ -81,6 +100,18 @@
       p { 
         line-height: 30px;
         text-align: center;
+        font-size: 1rem;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 377px) {
+  #intro-container {
+    div {
+      div h3 { //social media components
+        display: none;
       }
     }
   }
