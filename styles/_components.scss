@@ -38,6 +38,18 @@
   background-color: $quaternary-yellow;
 }
 
+.responsive-menu-container {
+  position: absolute;
+  flex-direction: column;
+  gap: 20px;
+  top: 100px;
+  right: 70px;
+  border: 2px solid $primary-yellow;
+  background-color: $tertiary-yellow;
+  padding: 25px 30px;
+  border-radius: 10px;
+}
+
 .contact-fieldset-component {
   border-width: 3px;
   border-radius: 15px;
