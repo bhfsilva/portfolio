@@ -52,8 +52,6 @@ export default function Main() {
     }
 
     useEffect(() => {
-        CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
-
         getGithubRepositories().then(data => {
             setProjectsList(data.responseList)
             setResponseStatusGithubAPI(data.responseStatus)
