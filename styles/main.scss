@@ -1,6 +1,4 @@
-@import "mixins";
-@import "variables";
-@import "components";
+@import "mixins", "variables", "components", "responsive";
 
 * {
   box-sizing: border-box;
@@ -115,7 +113,7 @@ footer {
 @include generate-class-by-increment(padding, 0, 30, px);
 @include generate-class-by-increment(gap, 0, 70, px);
 @include generate-class-by-increment(font-size, 24, 25, px);
-@include generate-class-by-increment(font-size, 1, 2, rem);
+@include generate-class-by-increment(font-size, 0, 2, rem);
 @include generate-class-by-increment(line-height, 20, 40, px);
 @include generate-class-by-increment(z-index, 0, 2, null);
 @include generate-class-by-increment(border-radius, 0, 40, px);

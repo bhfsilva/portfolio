@@ -4,6 +4,7 @@ import { LiaFileDownloadSolid } from "react-icons/lia";
 import { IoMdCheckmark, IoMdClose } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FiGrid, FiList } from "react-icons/fi";
+import { RiMenuFill } from "react-icons/ri";
 import { PiMaskSad } from "react-icons/pi";
 import JobExperience from "/src/components/JobExperience";
 import SocialMediaLink from "/src/components/SocialMediaLink";
@@ -30,6 +31,8 @@ export default function Main() {
     const [responseStatusGithubAPI, setResponseStatusGithubAPI] = useState(1);
     const [responseStatusNotionAPI, setResponseStatusNotionAPI] = useState(0);
     const [contactObject, setContactObject] = useState({ username: "", email: "", message: "" });
+    const [showMenu, setShowMenu] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(10000000);
 
     function submitForm(event){
         setResponseStatusNotionAPI(1);
@@ -52,27 +55,40 @@ export default function Main() {
     useEffect(() => {
         CSS.paintWorklet.addModule("https://unpkg.com/houdini-paint-dot-grid/dist/dot-grid-worklet.js");
 
+        window.addEventListener('resize', () => {
+            setWindowWidth(window.innerWidth);
+            console.log(window.innerWidth)
+            if (window.innerWidth <= 810) {
+                setProjectViewGrid(true)
+            }
+        });
+
         getGithubRepositories().then(data => {
             setProjectsList(data.responseList)
             setResponseStatusGithubAPI(data.responseStatus)
         });
+
+        return () => {
+            window.removeEventListener("resize")
+        }
     }, []);
 
   return(
     <main> 
-        <header className="default-outer-container position-relative z-index-2 height-125-px align-items-center">
+        <header id="header" className="default-outer-container position-relative z-index-3 height-125-px align-items-center">
             <div className="default-inner-container width-100-percent display-flex align-items-center justify-content-space-between">
                 <img src="/static/header/bh-logo.svg" alt="BH! Logo"/>
-                <nav className="display-flex gap-35-px font-size-1-dot-3-rem">
-                    <a href="#experiencias">Experiências</a>
-                    <a href="#projetos">Projetos</a>
-                    <a href="#contato">Contato</a>
-                </nav>
+                { windowWidth <= 700 && <RiMenuFill className="font-size-3-rem" onClick={() => setShowMenu(!showMenu)}/> }
+                { (windowWidth <= 700 && !showMenu) || <nav className={`${windowWidth <= 700 ? "responsive-menu-container" : "gap-35-px"} display-flex font-size-1-dot-3-rem`}>
+                    <a onClick={() => setShowMenu(false)} href="#experiencias">Experiências</a>
+                    <a onClick={() => setShowMenu(false)} href="#projetos">Projetos</a>
+                    <a onClick={() => setShowMenu(false)} href="#contato">Contato</a>
+                </nav> }
             </div>
         </header>
         <div>
             <section className="default-outer-container position-relative">
-                <div className="position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
+                <div id="intro-container" className="position-relative height-600-px default-inner-container display-flex align-items-center gap-55-px">
                     <div className="display-flex flex-direction-column justify-content-space-between z-index-2">
                         <h1 className="font-weight-normal font-size-3-rem">
                             Olá, me chamo <mark>Bruno Henrique!</mark>
@@ -91,6 +107,7 @@ export default function Main() {
                                     url={socialMedia.url}
                                     username={socialMedia.username}
                                     socialMediaName={socialMedia.socialMediaName}
+                                    size={windowWidth <= 716 ? "medium" : "normal"}
                                 />
                             ))}
                         </div>
@@ -131,14 +148,14 @@ export default function Main() {
                             <h1 id="projetos" className="section-title">Projetos</h1>
                             {renderStatusIcon(responseStatusGithubAPI)}
                         </div>
-                        <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
+                        {(windowWidth >= 810) && <button className="custom-button padding-15-px" onClick={() => setProjectViewGrid(!projectViewGrid)}>
                             {
                                 projectViewGrid ?
                                     <FiGrid className="font-size-25-px"/>
                                 :
                                     <FiList className="font-size-25-px"/>
                             }
-                        </button>
+                        </button>}
                     </div>
                     <div className={`${projectViewGrid ? "flex-flow-wrap gap-40-px" : "flex-direction-column gap-20-px"} display-flex justify-content-center`}>
                         {
@@ -195,7 +212,7 @@ export default function Main() {
                                     <input
                                         onChange={(event) => setContactObject(prevState => ({...prevState, username: event.target.value}))}
                                         value={ contactObject.username }
-                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-50-px"
+                                        className="font-size-1-rem border-radius-5-px padding-10-px height-50-px"
                                         type="text"
                                         placeholder="Insira seu nome *"
                                         required
@@ -203,7 +220,7 @@ export default function Main() {
                                     <input
                                         onChange={(event) => setContactObject(prevState => ({...prevState, email: event.target.value}))}
                                         value={ contactObject.email }
-                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-50-px"
+                                        className="font-size-1-rem border-radius-5-px padding-10-px height-50-px"
                                         type="email"
                                         placeholder="Insira seu email *"
                                         required
@@ -211,13 +228,13 @@ export default function Main() {
                                     <textarea
                                         onChange={(event) => setContactObject(prevState => ({...prevState, message: event.target.value}))}
                                         value={ contactObject.message }
-                                        className="font-size-1-dot-1-rem border-radius-5-px padding-10-px height-150-px"
+                                        className="font-size-1-rem border-radius-5-px padding-10-px height-150-px"
                                         placeholder="Deixe um comentário *"
                                         required
                                     />
                                     <div className="display-flex align-items-center gap-10-px">
                                         <button
-                                            className="font-size-1-dot-1-rem custom-button border-radius-5-px"
+                                            className="font-size-1-rem custom-button border-radius-5-px"
                                             type="submit"
                                             disabled={contactObject.username && contactObject.email && contactObject.message ? false : true}
                                         >        

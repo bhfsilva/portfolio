@@ -1,0 +1,87 @@
+@media (max-width: 1565px) {
+  #intro-container > img { //blob background
+    right: 0;
+  }
+}
+
+@media (max-width: 1130px) {
+  #intro-container {
+    & > img { //blob background
+      opacity: 0.4; 
+    }
+    h1 {
+      text-align: center;
+    }
+    div {
+      & > p {
+        width: 100%;
+      }
+      & > div { //social media components
+        justify-content: space-evenly;
+        gap: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 795px) {
+  .contact-fieldset-component {
+    & > div > div {
+      gap: 20px;
+    }
+    hr {
+      display: none;
+    }
+    form {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  #header {
+    height: unset;
+    padding: 40px 0px 20px 0px;
+  }
+
+  #intro-container h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 581px) {
+  #intro-container {
+    div {
+      div p { //social media components
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  #intro-container {
+    & > div {
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 465px) {
+  #intro-container {
+    & > div {
+      h1 {
+        font-size: 2rem;
+        img {
+          width: 30px;
+        }
+      }
+      p { 
+        line-height: 30px;
+        text-align: center;
+      }
+    }
+  }
+}
