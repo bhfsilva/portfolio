@@ -23,10 +23,7 @@ header {
 
 main {
   background-color: $quaternary-yellow;
-  background-image: paint(dot-grid);
-  --dot-size: 5px;
-  --dot-spacing: 8px;
-  --dot-color: #{$tertiary-yellow};
+  background-image: url("/static/dot-background.svg");
 }
 
 body {
