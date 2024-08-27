@@ -26,6 +26,7 @@
     a {
       flex-direction: column;
       justify-content: center;
+      width: 100%;
       #content {
         text-align: center;
         align-items: center;
@@ -37,6 +38,9 @@
     button {
       display: none;
     }
+    // & > div {
+    //   justify-content: center;
+    // }
   }
 }
 
@@ -90,6 +94,12 @@
   #social-media-intro-component p {
     display: none;
   }
+  
+  #experiencias, #projetos {
+    width: 100%;
+    text-align: center;
+    border-bottom: unset;
+  }
 }
 
 @media (max-width: 620px) {
@@ -140,6 +150,7 @@
 
 @media (max-width: 400px) {
   #intro-container {
+    height: 530px;
     & > div {
       h1 {
         font-size: 1.8rem;
@@ -153,9 +164,7 @@
       }
     }
   }
-}
-
-@media (max-width: 395px) {
+  
   #social-media-intro-component svg {
     font-size: 2rem;
   }
