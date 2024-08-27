@@ -35,6 +35,12 @@ export default function Main() {
         is_loading: true
     });
 
+    const [githubResponse, setGithubResponse] = useState({
+        status: 0,
+        payload: [service.projectsMock, service.projectsMock],
+        is_loading: true
+    });
+
     function setNotionCommentPayloadValue(payloadKey, value) {
         setNotionCommentResponse(prevState => ({
             ...prevState,
@@ -77,9 +83,14 @@ export default function Main() {
     }
 
     useEffect(() => {
-        getGithubRepositories().then(data => {
-            setProjectsList(data.responseList)
-            setResponseStatusGithubAPI(data.responseStatus)
+        service.getGithubRepositories().then(response => {
+            setGithubResponse({
+                status: response.status,
+                payload: response.body,
+                is_loading: false
+            });
+        });
+
         });
     }, []);
 

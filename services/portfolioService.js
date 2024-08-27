@@ -59,38 +59,16 @@ export function getJobExperienceList() {
   ]
 }
 
+//requisicao sendo feita para API customizada do Next.JS para que token nao seja mostrado no chrome dev tools
 export async function getGithubRepositories() {
-  try {
-    //requisicao sendo feita para API customizada do Next.JS para que token nao seja mostrado no chrome dev tools
-    const response = await fetch("/api/github");
-    const responseData = await response.json();
-    const returnObject = {
-      responseStatus: response.status
-    }
-    if (response.ok) {
-      const repositoryList = responseData["data"]["result"]["repositories"]["list"].map(repository => {
-        const repositoryObject = repository.item;
-        return {
-          id: repositoryObject.id,
-          owner: repositoryObject.owner.name,
-          image: repositoryObject.image,
-          name: repositoryObject.name,
-          description: repositoryObject.description,
-          url: repositoryObject.url,
-          isFork: repositoryObject.isFork,
-          isPrivate: repositoryObject.isPrivate,
-          isUserConfigurationRepository: repositoryObject.isUserConfigurationRepository,
-          languages: repositoryObject.languages.list.map(language => language.item.name)
-        }
-      });
-      return {
-        ...returnObject,
-        responseList: repositoryList
-      }
-    }
-    return {
-      ...returnObject,
-      responseList: []
+  const response = await fetch("/api/github");
+  const responseBody = await response.json();
+  return {
+    body: responseBody,
+    status: response.status
+  }
+};
+
 //requisicoes sendo feitas para API customizada do Next.JS para que erro de CORS nao seja gerado
 export async function postNotionComment(contactObject){
   const response = await fetch("/api/notion/comment",

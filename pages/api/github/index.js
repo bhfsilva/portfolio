@@ -1,9 +1,3 @@
-export const config = {
-  api: {
-    externalResolver: true,
-  }
-}
-
 export default async function handler(_, res) {
   try {
     const response = await fetch('https://api.github.com/graphql', {
@@ -44,13 +38,40 @@ export default async function handler(_, res) {
         }`,
       }),
     });
+
     if (!response.ok) {
-      throw new Error(`API response error: ${response.status}`);
+      throw new Error(`GitHub API handler error: ${response.status}`);
     }
-    const data = await response.json();
-    res.status(200).json(data);
+
+    const responseData = await response.json();
+
+    let repositoryList = responseData["data"]["result"]["repositories"]["list"].map(repository => {
+      const repositoryObject = repository.item;
+      return {
+        id: repositoryObject.id,
+        owner: repositoryObject.owner.name,
+        image: repositoryObject.image,
+        name: repositoryObject.name,
+        description: repositoryObject.description,
+        url: repositoryObject.url,
+        isFork: repositoryObject.isFork,
+        isPrivate: repositoryObject.isPrivate,
+        isUserConfigurationRepository: repositoryObject.isUserConfigurationRepository,
+        languages: repositoryObject.languages.list.map(language => language.item.name)
+      }
+    });
+
+    repositoryList = repositoryList.filter(repoObject =>
+      repoObject.owner === "bhfsilva" &&
+      !repoObject.isFork &&
+      !repoObject.isPrivate &&
+      !repoObject.isUserConfigurationRepository
+    );
+
+    res.status(200).json(repositoryList);
+    
   } catch (error) {
-    console.error('GitHub API handler error:', error);
     res.status(500).json({ error: error.message });
+    console.error('GitHub API handler error:', error);
   }
 }
