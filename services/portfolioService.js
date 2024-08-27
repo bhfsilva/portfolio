@@ -91,8 +91,39 @@ export async function getGithubRepositories() {
     return {
       ...returnObject,
       responseList: []
+//requisicoes sendo feitas para API customizada do Next.JS para que erro de CORS nao seja gerado
+export async function postNotionComment(contactObject){
+  const response = await fetch("/api/notion/comment",
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify({
+        author: contactObject.username,
+        contact: contactObject.email,
+        comment: contactObject.message
+      })
     }
-  } catch (error) {
-    console.log(error);
+  );
+  const responseBody = await response.json();
+  return {
+    body: responseBody,
+    status: response.status
+  }
+}
+
+export async function getNotionCurriculumPdfUrl(){
+  const response = await fetch("api/notion/curriculum-pdf-url", {
+    headers: {
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-06-28"
+    },
+    method: "GET"
+  });
+  const responseBody = await response.text();
+  return {
+    body: responseBody,
+    status: response.status
+  }
+}
   }
 };
