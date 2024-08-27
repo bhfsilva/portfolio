@@ -6,7 +6,7 @@ import { FiGrid, FiList } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
 import { PiMaskSad } from "react-icons/pi";
-import JobExperience from "/src/components/JobExperience";
+import experienceJson from "/src/components/JobExperience/job-experience.json";
 import SocialMediaLink from "/src/components/SocialMediaLink";
 import JobExperience from "/src/components/JobExperience";
 import Project from "/src/components/Project";
@@ -23,6 +23,16 @@ function renderStatusIcon(responseStatusCode) {
 }
 
 export default function Main() {
+    const socialMediasList = service.getSocialMediaList();
+    const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
+    const [projectViewGrid, setProjectViewGrid] = useState(false);    
+
+    const [notionJobExperienceResponse, setNotionJobExperienceResponse] = useState({
+        status: 0,
+        payload: [service.jobExperienceMock, service.jobExperienceMock],
+        is_loading: true
+    });
+
     const [notionCurriculumResponse, setNotionCurriculumResponse] = useState({
         status: 0,
         payload: "",
@@ -91,6 +101,19 @@ export default function Main() {
             });
         });
 
+        service.postNotionJobExperienceDatabase().then(response => {
+
+            let jobExperienceContent = experienceJson;
+
+            if (response.status == 200) {
+                jobExperienceContent = response.body
+            }
+
+            setNotionJobExperienceResponse({
+                status: response.status,
+                payload: jobExperienceContent,
+                is_loading: false
+            });
         });
     }, []);
 

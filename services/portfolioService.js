@@ -103,5 +103,14 @@ export async function getNotionCurriculumPdfUrl(){
     status: response.status
   }
 }
+
+export async function postNotionJobExperienceDatabase(){
+  const response = await fetch("/api/notion/job-experience-database",{
+    method: "POST"
+  });
+  const responseBody = await response.json();
+  return {
+    body: responseBody,
+    status: response.status
   }
-};
+}
