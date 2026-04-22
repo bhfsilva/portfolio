@@ -18,5 +18,3 @@
 ### 🛎 Considerações
 
 * Caso encontre <strong>bugs</strong> ou tenha <strong>sugestões</strong>, abra uma issue ou entre em contato.
-
-## 🔗 Acesse em: <a href="https://portfoliobrunohenrique.vercel.app/">Portfólio - Bruno Henrique</a>
